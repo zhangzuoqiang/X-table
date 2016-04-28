@@ -37,7 +37,7 @@
     <div class="g-bd clearfix">
         <div class="g-mn ">
              <div class="user-info">
-                 <h2>心率血氧数据</h2>
+                 <h3>心率血氧数据</h3>
              </div>
              <!--
              <div class="content-top">
@@ -45,7 +45,7 @@
                  <span>当前孕周:</span><input type="input">23周0天</input> <span>开始监测时间</span><input>2016.01.01</input><span>监测时长</span><input>1小时34分钟48秒</input> <span>平均血氧</span><input>99%</input><span>平均心率</span><input>115次/分钟</input>
              </div>
              -->
-             <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+             <div id="container" style="min-width: 310px; height: 300px; margin: 0 auto">
                  
              </div>
                  
@@ -53,12 +53,7 @@
     </div>
            
       <div class="g-sd">
-            <div class="M-navsim clearfix">
-              <ul>
-                 <li class="M-nav-list">体重趋势图</li>
-                 <li class="M-nav-list  select">体重数据</li>
-              </ul>
-            </div>
+          
             <div class="M-table-btn fr">
                 <select>
                 <option>全部</option>
@@ -69,7 +64,7 @@
                <input></input>到<input></input><button>确定</button>
             </div>
             <div class="M-table-tit clearfix">
-                <h2>血氧</h2>
+                <h3 class="user-info">血氧</h3>
             </div>
 
             <div class="M-tale">
@@ -238,9 +233,11 @@ $(function () {
             type: 'line'
         },
         title:{
-            text:'血氧图'
+            text:''
         },
-        
+         credits:{
+            enabled:false 
+      },
         xAxis: {
              categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30']
         },

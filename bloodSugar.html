@@ -33,12 +33,10 @@
         </ul>
 
     </div>
-    <div class="g-bd">
-        <div class="g-mn">
+    <div class="g-bd clearfix">
+        
            <div class="g-mn clearfix">
              <h3 class="user-info">用户基本信息</h3>
-             
-             
                 <table class="table ">
                     <tbody>
                         <tr>
@@ -57,7 +55,7 @@
                  
                
                
-           <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>        
+           <div id="container" style="min-width: 310px; height: 300px; margin: 0 auto"></div>        
         
         </div>
          <div class="g-sd clearfix">
@@ -220,9 +218,11 @@ $(function () {
             type: 'line'
         },
         title:{
-            text:'血氧图'
+            text:''
         },
-        
+         credits:{
+            enabled:false 
+      },
         xAxis: {
              categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30']
         },
