@@ -1,0 +1,20 @@
+.g-bd{
+	min-width: 810px;
+	max-width: 1520px;
+}
+.M-table-item{
+	
+
+    border-bottom: 1px solid #cccccc;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    padding-left: 1%;
+}
+.M-table-list li {
+    width: 80px;
+     padding: 0 0px;
+    display: inline-block;
+    font-size: 12px;
+    color: #686d81;
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>血尿</title>
+<!--bootstrap不支持IE兼容模式，为了让IE浏览器运行最新的渲染模式，将添加以下标签在页面中-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<!--.针对浏览器的内容做标识（使用meta标签调节浏览器的渲染方式）bootstrap不支持IE兼容模式，为了让IE浏览器运行最新的渲染模式，将添加以下标签在页面中-->
+<!-- 内核控制Meta标签，因为目前国内的主流浏览器都是双内核，故而添加meta标签来告诉浏览器使用什么内核来渲染页面-->
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta name="viewport" content="width=device-width"/>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div class="g-doc">
+    <div class="g-hd clearfix">
+        <ul class="M-nav fl clearfix">     
+            <li class="M-nav-list"><a>体重</a></li>
+            <li class="M-nav-list"><a>胎心 </a></li>
+            <li class="M-nav-list"><a>血糖</a></li>
+            <li class="M-nav-list"><a>血压</a></li>
+            <li class="M-nav-list "><a>血氧</a></li>
+            <li class="M-nav-list "><a>血脂</a></li>
+            <li class="M-nav-list select"><a>尿液</a></li>
+            <li class="M-nav-list"><a>体温</a></li>
+            <li class="M-nav-list"><a>心电</a></li>
+
+        </ul>
+
+    </div>
+    <div class="g-bd">
+        
+           <div class="g-mn clearfix">
+             <h3 class="user-info">用户基本信息</h3>
+             
+             
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                          <td> <label>孕妇姓名:</label><input placeholder="任倩姚"></input> </td>
+                          <td> <label>年龄:</label><input placeholder="28"></input></td>
+                          <td> <label>孕妇电话:</label><input placeholder="13269733240"></input></td>
+                          <td> <label>当前孕周:</label><input placeholder="21周"></input></td>
+                        </tr>
+                         
+                    </tbody> 
+
+                </table>
+                 
+               
+               
+            
+        
+        </div>
+         <div class="g-sd clearfix">
+             <h3 class="M-table-tit">历史血脂数据</h3>
+            <div class="btn-toolbar fr">
+              <div class="btn-group">
+              
+               <button class="btn btn-info" type="submit">当前测量次</button>
+              </div>
+              <div class="btn-group">
+                <select>
+                <option>全部</option>
+                <option>近七天</option>
+                <option>近一个月</option>
+                <option>选择时间</option>
+              <select>
+               <input placeholder="选择开始时间"></input><input placeholder="选择结束时间"></input><button class="btn btn-default" type="submit">确定</button>
+              </div>
+              
+                
+            </div>
+            
+           
+            <table class="table table-condensed ">
+            
+            <thead>
+           <tr class="text-center">
+                     <td>日期</td>
+                     <td>孕妇姓名</td>
+                     <td>当前孕周</td>
+                     <td>白细胞</td>
+                     <td>潜血</td>
+                     <td>亚硝酸盐</td>
+                     <td>ph值</td>
+                     <td>尿胆酸</td>
+                     <td>胆红素</td>
+                     <td>尿糖</td>
+                     <td>尿比重</td>
+                     <td>酮体</td>
+                     <td>维生素C</td>
+           </tr>
+       </thead>
+      <tbody>
+      <tr>
+                     <td>2016-4-17</td>
+                     <td>张思瑞</td>
+                     <td>16周</td>
+                     <td>-</td>
+                     <td>-1</td>
+                     <td>-</td>
+                     <td>7.0</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>1.001</td>
+                     <td>-</td>
+                     <td>+1</td>
+      </tr>
+          <tr>
+                     <td>2016-4-17</td>
+                     <td>张思瑞</td>
+                     <td>16周</td>
+                     <td> -</td>
+                     <td> -1</td>
+                     <td> -</td>
+                     <td>7.0</td>
+                     <td> -</td>
+                     <td> -</td>
+                     <td> -</td>
+                     <td> -</td>
+                     <td>1.001</td>
+                     <td> -</td>
+                     <td>+1</td>
+      </tr>
+          <tr>
+                     <td>2016-4-17</td>
+                     <td>张思瑞</td>
+                     <td>16周</td>
+                     <td>-</td>
+                     <td>-1</td>
+                     <td>-</td>
+                     <td>7.0</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>1.001</td>
+                     <td>-</td>
+                     <td>+1</td>
+      </tr>
+          <tr>
+                     <td>2016-4-17</td>
+                     <td>张思瑞</td>
+                     <td>16周</td>
+                     <td>-</td>
+                     <td>-1</td>
+                     <td>-</td>
+                     <td>7.0</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>-</td>
+                     <td>1.001</td>
+                     <td>-</td>
+                     <td>+1</td>
+      </tr>
+       
+   </tbody>
+</table>
+       
+        </div>
+    </div>
+  
+</div>
+ <!-- jQuery 1.7.2 or higher -->
+  <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <!-- Optional, bootstrap javascript library -->
+  
+
+  <!--[if lt IE 9] 支持IE9以下新标签>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+  <!--[if lte IE 6]>
+  <script type="text/javascript" src="js/bootstrap-ie.js"></script>
+
+
+  <![endif]-->
+
+ 
+</body>
+</html>
