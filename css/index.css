@@ -126,3 +126,7 @@ select{
 h3{
 	font-size: 14px;
 }
+.btn-toolbar{
+	margin-bottom: 10px;
+	margin-right: 50px;
+}
