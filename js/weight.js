@@ -3,16 +3,12 @@ $(function () {
     showAllData();
     $('#weightHidden').hide();
     toggle();
-    showTableAsSelect();
-
-
 });
-       
 //随机数值函数
-  var randomScalingFactor = function() {
+ var randomScalingFactor = function() {
             return Math.round(Math.random() * 100);
             //return 0;
-  };
+};
   //显示7天数据
 function shoWSenvenDay(){ 
      $('#container').remove();
@@ -34,6 +30,14 @@ function shoWSenvenDay(){
             title: {
                 text: '体重(kg)'
             }
+        },
+        lang: {
+            printChart: '打印图表',
+            downloadPNG: '下载JPEG 图片',
+            downloadJPEG: '下载JPEG文档',
+            downloadPDF: '下载PDF 文件',
+            downloadSVG: '下载SVG 矢量图',
+            contextButtonTitle: '下载图片'
         },
         plotOptions: {
             line: {
@@ -131,7 +135,11 @@ function  showAllData(){
       $('.g-sd').append(warp);
       $('#container').highcharts({
         chart: {
-            type: 'line'
+            type: 'line',
+            borderWidth: 2,
+            plotBackgroundColor: 'white',
+            plotShadow: true,
+            plotBorderWidth: 1
         },
         title:{
             text:''
@@ -144,6 +152,14 @@ function  showAllData(){
             title: {
                 text: '体重(kg)'
             }
+        },
+        lang: {
+            printChart: '打印图表',
+            downloadPNG: '下载JPEG 图片',
+            downloadJPEG: '下载JPEG文档',
+            downloadPDF: '下载PDF 文件',
+            downloadSVG: '下载SVG 矢量图',
+            contextButtonTitle: '下载图片'
         },
         plotOptions: {
             line: {
@@ -167,14 +183,27 @@ function  showAllData(){
 function showTableAsSelect(){
     var options=$("select option:selected");  //获取选中的项
     if (options.value=="all") {
-       window.reload();
-       
+        
+
        showAllData();
+        chart.redraw();
     }
     if (options.value=="severnDay") {
       shoWSenvenDay();
+       chart.redraw();
     }
     else{
        showOneMonth();
+        chart.redraw();
     }
 }
+
+  // clear all series of the chart
+       function clearPlot() {
+          //console.log("clear plot data!!!");
+              var series=chart.series;              
+              while(series.length > 0) {
+                  series[0].remove(false);
+              }
+              chart.redraw();
+        };
