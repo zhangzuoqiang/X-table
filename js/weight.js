@@ -1,4 +1,7 @@
 //页面加载时
+//
+
+var chart;
 $(function () {
     showAllData();
     $('#weightHidden').hide();
@@ -16,9 +19,10 @@ $(function () {
 };
   //显示7天数据
 function shoWSenvenDay(){ 
-     $('#container').remove();
-     var warp=document.createElement('div');
-     warp.attr(id,'container');
+    $('#container').remove();
+      var warp=$(document.createElement('div'));
+        warp.attr("id","container");
+      warp.css({ "min-width":"310px","height": "300px" ,"margin":"0 auto"});
      $('.g-sd').append(warp);
      $('#container').highcharts({
         chart: {
@@ -93,7 +97,7 @@ function toggle(){
 function  showOneMonth(){
      $('#container').remove();
       var warp=$(document.createElement('div'));
-      warp.attr("id","container");
+        warp.attr("id","container");
       warp.css({ "min-width":"310px","height": "300px" ,"margin":"0 auto"});
       $('.g-sd').append(warp);
       $('#container').highcharts({
@@ -185,27 +189,26 @@ function  showAllData(){
     });
 }
 
-function showTableAsSelect(){
-    var options=$("#daySelect option:selected").text();  //获取选中的项
+function showTableAsSelect(options){
+    //获取选中的项
      if (options=='全部') {
-        alert('b');
+        
 
         showAllData();
-        chart.redraw();
+    
          
 
     }
     if (options=='近七天') {
        shoWSenvenDay();
-       chart.redraw();
-        alert('c');
-
+      
+      
     }
       else{
        alert('d');
 
        showOneMonth();
-        chart.redraw();
+       
     }
 }
 
@@ -217,7 +220,4 @@ function clearPlot() {
                   series[0].remove(false);
               }
               chart.redraw();
-        };
-        $(".clear").bind("click",function(){
-          clearPlot();
-        })
+        }
