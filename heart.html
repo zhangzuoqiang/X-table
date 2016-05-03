@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>体重</title>
+<title>胎心</title>
 <!--bootstrap不支持IE兼容模式，为了让IE浏览器运行最新的渲染模式，将添加以下标签在页面中-->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <!--.针对浏览器的内容做标识（使用meta标签调节浏览器的渲染方式）bootstrap不支持IE兼容模式，为了让IE浏览器运行最新的渲染模式，将添加以下标签在页面中-->
@@ -18,10 +18,12 @@
 </head>
 <body>
 <div class="g-doc">
+
+         
     <div class="g-hd clearfix">
     	  <ul class="M-nav fl clearfix">     
-            <a href="weight.html"><li class="M-nav-list select">体重</li></a>
-            <a href="heart.html"><li class="M-nav-list">胎心</li></a>
+            <a href="weight.html"><li class="M-nav-list ">体重</li></a>
+            <a href="heart.html"><li class="M-nav-list select">胎心</li></a>
             <a href="bloodSugar.html"><li class="M-nav-list">血糖</li></a>
             <a href="bloodPressure.html"><li class="M-nav-list">血压</li></a>
             <a href="bloodOxygen.html"><li class="M-nav-list">血氧</li></a>
@@ -30,33 +32,27 @@
             <a href="templeature.html"><li class="M-nav-list">体温</li></a>
             <a href=""><li class="M-nav-list">心电</li></a>
         </ul>
-
     </div> 
     <div class="g-bd clearfix">
       <div class="g-mn clearfix">
          <h3 class="user-info">用户基本信息</h3>
-           <table class="table ">
+           <table class="table table-striped">
               <tbody>
                   <tr>
                     <td> <label>孕妇姓名:</label><input placeholder="任倩姚"></input> </td>
                     <td><label>年龄:</label>    <input placeholder="28"></input></td>
                     <td><label>孕妇电话:</label><input placeholder="13259733240"></input></td>
                     <td><label>当前孕周:</label><input placeholder="21周"></input></td>
-                    <td><label>总测量次数:</label><input placeholder="4次"></input></td>
                   </tr>
                 
                 </tbody> 
             </table>
+       <div class="wap1">
+         <div id="container" style="min-width: 310px; height: 300px; margin: 0 auto">
+      </div>
       </div>
     <div class="g-sd">
-            <div class="M-navsim clearfix">
-              <ul class="smlList">
-                 <li class="M-nav-list select" id="weightTable">体重趋势图</li>
-                 <li class="M-nav-list" id="weightData">体重数据</li>
-              </ul>
-            </div>
-           <h3 class="M-table-tit">孕期体重增长标准(IOM2009)</h3>
-            <div class="btn-toolbar fr">
+             <div class="btn-toolbar fr">
               <div class="btn-group">
                <button class="btn btn-primary">按日期查看</button>
                <button class="btn btn-primary">按孕周查看</button>
@@ -72,7 +68,7 @@
               </div>
               
                 
-            </div>
+          </div>
             
         <table class="table table-bordered table-striped" id="weightHidden">
             
@@ -151,9 +147,7 @@
             </tr>
         </tbody>
     </table>
-      <div class="wap1">
-         <div id="container" style="min-width: 310px; height: 300px; margin: 0 auto">
-      </div>
+      
       
       </div>
     </div>
