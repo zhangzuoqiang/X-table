@@ -1,15 +1,17 @@
 /*
- * 页面加载
+ * 日期控件声明
  */
-$(function () {
-    showAllData();
-    $('#weightHidden').hide();
-    toggle();
-    $("#daySelect").change(function(){
-      var options=$("#daySelect option:selected").val(); 
-      showTableAsSelect(options);
-    });
+  function dataPicker(){
+    laydate({
+    elem: '#u-beginTime',  
+    event: 'click' 
 });
+    laydate({
+    elem: '#u-endTime', 
+    event: 'click' 
+});
+  }
+ 
 /*
  * 根据下拉表的选择显示折线图
  * @param {string} 下拉表当前被选择的值，其实不利用
@@ -170,6 +172,10 @@ function  showAllData(){
                 shared: true,
                 crosshairs: true
             },
+        credits:{
+                 enabled:false,                    // 默认值，如果想去掉版权信息，设置为false即可
+               
+               },
         series: [{
             name: '体重',
             data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6,57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2,
@@ -215,3 +221,20 @@ function toggle(){
           $("#weightHidden").show();
       });     
 }
+/*
+ * 页面加载
+ */
+$(function () {
+   
+    dataPicker();
+   
+    showAllData();
+  
+    $('#weightHidden').hide();
+   
+    toggle();
+    $("#daySelect").change(function(){
+      var options=$("#daySelect option:selected").val(); 
+      showTableAsSelect(options);
+    });
+});
