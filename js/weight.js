@@ -3,7 +3,12 @@ $(function () {
     showAllData();
     $('#weightHidden').hide();
     toggle();
+    $("#daySelect").change(function(){
+      var options=$("#daySelect option:selected").text();  //获取选中的项
+      showTableAsSelect(options);
+    });
 });
+
 //随机数值函数
  var randomScalingFactor = function() {
             return Math.round(Math.random() * 100);
@@ -15,7 +20,7 @@ function shoWSenvenDay(){
      var warp=document.createElement('div');
      warp.attr(id,'container');
      $('.g-sd').append(warp);
-     ('#container').highcharts({
+     $('#container').highcharts({
         chart: {
             type: 'line'
         },
@@ -181,25 +186,31 @@ function  showAllData(){
 }
 
 function showTableAsSelect(){
-    var options=$("select option:selected");  //获取选中的项
-    if (options.value=="all") {
-        
+    var options=$("#daySelect option:selected").text();  //获取选中的项
+     if (options=='全部') {
+        alert('b');
 
-       showAllData();
+        showAllData();
         chart.redraw();
+         
+
     }
-    if (options.value=="severnDay") {
-      shoWSenvenDay();
+    if (options=='近七天') {
+       shoWSenvenDay();
        chart.redraw();
+        alert('c');
+
     }
-    else{
+      else{
+       alert('d');
+
        showOneMonth();
         chart.redraw();
     }
 }
 
-  // clear all series of the chart
-       function clearPlot() {
+  
+function clearPlot() {
           //console.log("clear plot data!!!");
               var series=chart.series;              
               while(series.length > 0) {
@@ -207,3 +218,6 @@ function showTableAsSelect(){
               }
               chart.redraw();
         };
+        $(".clear").bind("click",function(){
+          clearPlot();
+        })

@@ -64,21 +64,15 @@
                  <li class="M-nav-list" id="weightData">体重数据</li>
               </ul>
             </div>
-              
-                 
-             
-          
-            
-            <h3 class="M-table-tit">孕期体重增长标准(IOM2009)</h3>
-            
+           <h3 class="M-table-tit">孕期体重增长标准(IOM2009)</h3>
             <div class="btn-toolbar fr">
               <div class="btn-group">
-                <button class="btn btn-primary">按日期查看</button>
+               <button class="btn btn-primary">按日期查看</button>
                <button class="btn btn-primary">按孕周查看</button>
                <button class="btn btn-info" type="submit">当前测量4次</button>
               </div>
               <div class="btn-group">
-                <select>
+                <select id="daySelect" >
                 <option value="all">全部</option>
                 <option value="severnDay">近七天</option>
                 <option value="oneMouth">近一个月</option>
@@ -167,15 +161,16 @@
         </tbody>
     </table>
       <div class="wap1">
-         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+         <div id="container" style="min-width: 310px; height: 300px; margin: 0 auto">
       </div>
       
       </div>
     </div>
 </div>
+<button class="clear">清除内容</button>
  <!-- jQuery 1.7.2 or higher -->
   <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-  <!-- Optional, bootstrap javascript library -->
+  
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
   <script type='text/javascript' src="js/weight.js"></script>
