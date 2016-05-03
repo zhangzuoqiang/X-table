@@ -1,29 +1,54 @@
-//页面加载时
-//
-
-var chart;
+/*
+ * 页面加载
+ */
 $(function () {
     showAllData();
     $('#weightHidden').hide();
     toggle();
     $("#daySelect").change(function(){
-      var options=$("#daySelect option:selected").text();  //获取选中的项
+      var options=$("#daySelect option:selected").val(); 
       showTableAsSelect(options);
     });
 });
-
-//随机数值函数
+/*
+ * 根据下拉表的选择显示折线图
+ * @param {string} 下拉表当前被选择的值，其实不利用
+ */
+function showTableAsSelect(options){
+    if (options=='all') {
+        showAllData();
+    }
+    if (options=='severnDay') {
+       shoWSenvenDay();
+    }
+    else{
+       showOneMonth();
+       }
+}
+/*
+ *随机数值函数
+ */
  var randomScalingFactor = function() {
             return Math.round(Math.random() * 100);
             //return 0;
 };
-  //显示7天数据
-function shoWSenvenDay(){ 
+ /*
+ *清除上一个折线图
+ */
+function lineToggle() {
     $('#container').remove();
       var warp=$(document.createElement('div'));
-        warp.attr("id","container");
-      warp.css({ "min-width":"310px","height": "300px" ,"margin":"0 auto"});
-     $('.g-sd').append(warp);
+      warp.attr("id","container");
+      warp.css({ "min-width":"310px","height": "350px" ,"margin":"0 auto"});
+      $('.g-sd').append(warp);
+}
+
+
+ /*
+  *显示7天数据
+  */
+ function shoWSenvenDay(){ 
+    
      $('#container').highcharts({
         chart: {
             type: 'line'
@@ -64,42 +89,10 @@ function shoWSenvenDay(){
             name: '体重',
             data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2,]
         }] });
-
 }
-function toggle(){
-       
-        // // 取得tabel
-        var table=$("#weightHidden");
-        //获取到canvas
-        var canvas=$("#container");
 
-        var btn1=$('#weightTable');
-
-        var btn2=$('#weightData');
-
-        var btnSelect=$(".btn-group");
-
-
-        btn1.bind('click',function(){
-             btn2.removeClass('select');
-             btn1.addClass('select');
-              $("#weightHidden").hide();
-              $("#container").show();
-        });
-        btn2.bind('click',function(){
-            btn1.removeClass('select');
-            btn2.addClass('select');
-            $("#container").hide();
-            $("#weightHidden").show();
-        });     
-}
-//显示一个月
-function  showOneMonth(){
-     $('#container').remove();
-      var warp=$(document.createElement('div'));
-        warp.attr("id","container");
-      warp.css({ "min-width":"310px","height": "300px" ,"margin":"0 auto"});
-      $('.g-sd').append(warp);
+function showOneMonth(){
+      lineToggle();
       $('#container').highcharts({
         chart: {
             type: 'line'
@@ -109,7 +102,8 @@ function  showOneMonth(){
         },
         
         xAxis: {
-            categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30','32','34','36','38','40' ]
+            categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', 
+            '20','22','24','26','28','30','32','34','36','38','40' ]
         },
         yAxis: {
             title: {
@@ -130,19 +124,14 @@ function  showOneMonth(){
             },
         series: [{
             name: '体重',
-            data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6,57, 56.9, 59.5, 59.5, 60.4, 61.5]
+            data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 
+            63.3, 65.3, 63.9, 65.6,57, 56.9, 59.5, 59.5, 60.4, 61.5]
         }]
     });
 }
 function  showAllData(){
-
-     //清理前一个容器
-      $('#container').remove();
-      var warp=$(document.createElement('div'));
-      warp.attr("id","container");
-      warp.css({ "min-width":"310px","height": "300px" ,"margin":"0 auto"});
-      $('.g-sd').append(warp);
-      $('#container').highcharts({
+       lineToggle();      
+       $('#container').highcharts({
         chart: {
             type: 'line',
             borderWidth: 2,
@@ -155,7 +144,8 @@ function  showAllData(){
         },
         
         xAxis: {
-            categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30','32','34','36','38','40' ]
+            categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', 
+            '20','22','24','26','28','30','32','34','36','38','40' ]
         },
         yAxis: {
             title: {
@@ -184,35 +174,15 @@ function  showAllData(){
             },
         series: [{
             name: '体重',
-            data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6,57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6,62.2, 66.5, 63.3, 65.3, 63.9, 65.6]
+            data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6,57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2,
+             66.5, 63.3, 65.3, 63.9, 65.6,62.2, 66.5, 63.3, 65.3, 63.9, 65.6]
         }]
     });
 }
 
-function showTableAsSelect(options){
-    //获取选中的项
-     if (options=='全部') {
-        
-
-        showAllData();
-    
-         
-
-    }
-    if (options=='近七天') {
-       shoWSenvenDay();
-      
-      
-    }
-      else{
-       alert('d');
-
-       showOneMonth();
-       
-    }
-}
-
-  
+/*
+ * clear plot data!
+ */
 function clearPlot() {
           //console.log("clear plot data!!!");
               var series=chart.series;              
@@ -221,3 +191,29 @@ function clearPlot() {
               }
               chart.redraw();
         }
+
+
+/*
+ * 折现表与数据表格的互相切换.
+ */
+function toggle(){
+      // 取得tabel
+      var table=$("#weightHidden");
+      //获取到canvas
+      var canvas=$("#container");
+      var btn1=$('#weightTable');
+      var btn2=$('#weightData');
+      var btnSelect=$(".btn-group");
+      btn1.bind('click',function(){
+           btn2.removeClass('select');
+           btn1.addClass('select');
+            $("#weightHidden").hide();
+            $("#container").show();
+      });
+      btn2.bind('click',function(){
+          btn1.removeClass('select');
+          btn2.addClass('select');
+          $("#container").hide();
+          $("#weightHidden").show();
+      });     
+}
