@@ -131,3 +131,12 @@ h3{
 	margin-right: 50px;
 	padding: 0 10px;
 }
+label{
+	display: inline-block;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+input{
+	padding: 0 5px;
+}
+

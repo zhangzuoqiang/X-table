@@ -202,24 +202,29 @@ function clearPlot() {
  */
 function toggle(){
       // 取得tabel
+      var tableIncr=$("#container1");
       var table=$("#weightHidden");
       //获取到canvas
       var canvas=$("#container");
       var btn1=$('#weightTable');
       var btn2=$('#weightData');
+    
       var btnSelect=$(".btn-group");
       btn1.bind('click',function(){
            btn2.removeClass('select');
-           btn1.addClass('select');
+          btn1.addClass('select');
             $("#weightHidden").hide();
+            $("#container1").hide();
             $("#container").show();
       });
       btn2.bind('click',function(){
           btn1.removeClass('select');
           btn2.addClass('select');
           $("#container").hide();
+         
           $("#weightHidden").show();
-      });     
+      }); 
+     
 }
 /*
  * 页面加载
@@ -238,3 +243,45 @@ $(function () {
       showTableAsSelect(options);
     });
 });
+
+
+
+function showBMI(){
+   $('#container1').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title:{
+            text:''
+        },
+        xAxis: {
+            categories: ['0', '2',  '4',  '6', '8~9', 
+            '9~10','10~11','11~12','12~13','13~14','14~15','15~16','16~17','17~18','18~19','19~20','20~21','21~22','22~23',
+            '23~24','24~25','25~26','26~27','27~28','28~29','29~30','30~31','31~32','32~33','33~34','34~35','35~36',
+            '36~37','37~38','38~39','39~40' ]
+        },
+        yAxis: {
+            title: {
+                text: '体重(kg)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
+        tooltip: {
+                shared: true,
+                crosshairs: true
+            },
+        series: [{
+            name: '体重',
+            data: [0,0,0,0,0.5,0.7,0.9,1.1,1.4,1.7,2.0,2.3,2.7,3.0,3.4,3.8,4.3,4.7,5.1,5.5,5.9,6.4,6.8,7.2,
+            7.4,7.7,8.1,8.4,8.8,9.1,9.5,10.0,10.4,10.5,11,11.3]
+        }]
+    });
+}
+
