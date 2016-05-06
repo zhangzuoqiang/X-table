@@ -130,6 +130,7 @@ function  creatLineAndPutDataToTable(){
        options_validatestatics.xAxis.categories=TimeELement;
        options_validatestatics.series[0].data=MbElement;
        options_validatestatics.series[1].data=XyElement;
+       //创建图表，new Highcharts.Chart options_validatestatics为配置参数
        chart_validatestatics = new Highcharts.Chart(options_validatestatics);
        alert(MbElement);
        alert(XyElement);

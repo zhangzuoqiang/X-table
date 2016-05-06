@@ -51,7 +51,7 @@ function shoWTable(){
 $(function () {
     shoWTable();
     $('#weightHidden').hide();
-    getBpDataToTable();
+     getBpDataToTable();
 
 });
        
@@ -71,28 +71,25 @@ $('#weightData').bind('click',function(){
 function getBpDataToTable(){
     
     $.ajax({
-       method:'get',
-       url:'http://58.67.201.23/serviceProxy/servlet/',
+       type:"get",
+       url:"http://58.67.201.23/serviceProxy/servlet/",
        data:{
-         "id":"522622198501281033",
-         "startTime":"2015-08-18",
-         "table":"yhxy01",
-         "endTime":"2016-01-15",
-         "SERVICE_CODE":"bull.ResourcesHZ.CXDXXX.List",
-         "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
+        "id":"522622198501281033",
+        "startTime":"2015-08-18",
+        "table":"yhxy",
+        "endTime":"2016-01-15",
+        "SERVICE_CODE":"bull.ResourcesHZ.CXDXXX.List",
+        "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
        },
-       dataType:"json",
-
-       error:function(XMLHttpRequest, textStatus, errorThrown){
-        alert(XMLHttpRequest.status);
-        alert(XMLHttpRequest.readyState);
-        alert(textStatus);
-
+      dataType:"json",
+        error:function(data){
+        
+         
        },
        success:function(data){
           alert('a');
           console.log(data);
-          console.log('获取数据成功');
+          console.log('请求成功');
         
         if (data.SYS_HEAD.RET_STATUS=='S') {
 
@@ -122,18 +119,22 @@ function getBpDataToTable(){
                          }
                        break;
                        case(3):
-                        $(this).text(data.BODY.data[inner_index].XY);
+                        $(this).text(data.BODY.data[inner_index].SZY);
                         break;
                        case(4):
-                       $(this).text(data.BODY.data[inner_index].MB);
-                       break;
+                       $(this).text(data.BODY.data[inner_index].SSY);
+
+                      break;
+                      case(5):
+                        $(this).text(data.BODY.data[inner_index].PJY);
+                      break;
+
      
                   }
                 
                 });
                 clonedTr.insertAfter(tr);});
           
-
        }
        else{
             console.log(XMLHttpRequest.status);
@@ -141,6 +142,7 @@ function getBpDataToTable(){
             console.log(textStatus);
 
           }
+
            $("#cloneTr").hide();
     }      
     });
