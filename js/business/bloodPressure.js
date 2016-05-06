@@ -82,14 +82,15 @@ function getBpDataToTable(){
          "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
        },
        dataType:"json",
+
        error:function(XMLHttpRequest, textStatus, errorThrown){
-        console.log(XMLHttpRequest.status);
-        console.log(XMLHttpRequest.readyState);
-        console.log(textStatus);
+        alert(XMLHttpRequest.status);
+        alert(XMLHttpRequest.readyState);
+        alert(textStatus);
 
        },
        success:function(data){
-          
+          alert('a');
           console.log(data);
           console.log('获取数据成功');
         

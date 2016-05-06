@@ -1,16 +1,24 @@
 
 $(function(){
-  getBpDataToTable();
-   creatLine();
+   creatLineAndPutDataToTable();
   
 });
-  var XyElement=[];
-  var MbElement=[];
-function  creatLine(XyElement,MbElement){
+
+function  creatLineAndPutDataToTable(){
  
-    
-    $('#container').highcharts({
+  
+ //定义空数组存储血氧饱和度用于折线图
+  var XyElement=[];
+ //定义空数组来存储心率用于折线图
+  var MbElement=[];
+
+  var TimeELement=[]
+  
+  var chart_validatestatics;
+  //折线图配置参数
+  var options_validatestatics={
         chart: {
+            renderTo: 'container',
             type: 'line'
         },
         title:{
@@ -18,9 +26,9 @@ function  creatLine(XyElement,MbElement){
         },
          credits:{
             enabled:false 
-      },
+       },
         xAxis: {
-             categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30']
+           
         },
         yAxis: {
             title: {
@@ -41,19 +49,15 @@ function  creatLine(XyElement,MbElement){
             },
         series: [{
             name: '心率',
-            data: eval("[" + MbElement + "]")
+            width:'2'
+            
         }, {
             name: '血氧饱和度',
-            data: eval("[" + XyElement + "]")
-        }]
-   
-});
-}
-function getBpDataToTable(){
-    
-    $.ajax({
+            width:'2'
+        }]}
+  $.ajax({
        method:'get',
-       url:'http://58.67.201.23/serviceProxy/servlet/',
+       url:'http://58.67.201.23/serviceProxy/servlet/'+ new Date(),
        data:{
          "id":"522622198501281033",
          "startTime":"2015-08-18",
@@ -89,6 +93,7 @@ function getBpDataToTable(){
                    switch(inner_index){
                        case(0):
                          $(this).text(data.BODY.data[inner_index].JCRQ.slice(0,-2));
+                         TimeELement.push(data.BODY.data[inner_index].JCRQ.slice(0,-2));
                        break;
                        case(1):
                          $(this).text(data.BODY.data[inner_index].YHMC);
@@ -103,18 +108,18 @@ function getBpDataToTable(){
                          }
                        break;
                        case(3):
-                          //定义空数组存储血氧饱和度用于折线图
+                         
                        
-                        $(this).text(data.BODY.data[inner_index].XY);
-                        XyElement.push(data.BODY.data[inner_index].XY);
+                          $(this).text(data.BODY.data[inner_index].XY);
+                          XyElement.push(data.BODY.data[inner_index].XY);
                        
                         break;
                        case(4):
-                       //定义空数组来存储心率用于折线图
+                      
                       
 
-                       $(this).text(data.BODY.data[inner_index].MB);
-                       MbElement.push(data.BODY.data[inner_index].MB);
+                         $(this).text(data.BODY.data[inner_index].MB);
+                         MbElement.push(data.BODY.data[inner_index].MB);
                        break;
                  
                   }
@@ -122,12 +127,19 @@ function getBpDataToTable(){
                 });
                 clonedTr.insertAfter(tr);});
              
-
+       options_validatestatics.xAxis.categories=TimeELement;
+       options_validatestatics.series[0].data=MbElement;
+       options_validatestatics.series[1].data=XyElement;
+       chart_validatestatics = new Highcharts.Chart(options_validatestatics);
+       alert(MbElement);
+       alert(XyElement);
+       alert(options_validatestatics.series);
        }
        else{
             console.log(XMLHttpRequest.status);
             console.log(XMLHttpRequest.readyState);
             console.log(textStatus);
+            alert('获取数据失败，请检查网络连接')
 
           }
            $("#cloneTr").hide();
