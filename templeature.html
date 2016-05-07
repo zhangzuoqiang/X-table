@@ -80,52 +80,28 @@
             </div>
             
            
-            <table class="table table-condensed ">
+            <table class="table table-bordered table-striped ">
             
             <thead>
            <tr class="text-center">
                      <td>日期</td>
                      <td>孕妇姓名</td>
-                     <td>检测孕周</td>
-                     <td>检测次数</td>
+                     <td>检测结果</td>
+                     
                      <td>平均体温</td>
-                     <td>操作</td>
+                     
                      
            </tr>
        </thead>
-      <tbody>
-            <tr>
-                <td>2016-03-30</td>
-                     <td>美女</td>
-                     <td>17周</td>
-                     <td>4次</td>
-                     <td>37</td>
-                     <td>查看</td>
-            </tr>
-            <tr>
-                <td>2016-03-30</td>
-                     <td>美女</td>
-                     <td>17周</td>
-                     <td>4次</td>
-                     <td>37</td>
-                     <td>查看</td>
-            </tr>
-            <tr>
-                <td>2016-03-30</td>
-                     <td>美女</td>
-                     <td>17周</td>
-                     <td>4次</td>
-                     <td>37</td>
-                     <td>查看</td>
-            </tr>
-            <tr>
-                <td>2016-03-30</td>
-                     <td>美女</td>
-                     <td>17周</td>
-                     <td>4次</td>
-                     <td>37</td>
-                     <td>查看</td>
-            </tr>
+         <tbody>
+             <tr id='cloneTr'>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           
+                           
+                   </tr>
    </tbody>
 </table>
        
@@ -138,7 +114,7 @@
   <!-- Optional, bootstrap javascript library -->
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
-  
+ <script type='text/javascript' src="js/business/templeature.js"></script>
 
   <!--[if lt IE 9] 支持IE9以下新标签>
     <script src="js/html5shiv.js"></script>
@@ -149,47 +125,6 @@
 
 
   <![endif]-->
-  <script type="text/javascript">
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'line'
-        },
-        title:{
-            text:''
-        },
-        credits:{
-            enabled:false 
-      },
-        xAxis: {
-             categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30']
-        },
-        yAxis: {
-            title: {
-                text: '体温℃'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: true
-            }
-        },
-        tooltip: {
-                shared: true,
-                crosshairs: true
-            },
-        series: [{
-            name: '体温',
-            data: [37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0, ]
-        }]
-       
-    });
-});  
-
-</script>
  
 </body>
 </html>
