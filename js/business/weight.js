@@ -91,7 +91,9 @@ function lineToggle() {
             data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2,]
         }] });
 }
-
+ /*
+  *显示一个月数据
+  */
 function showOneMonth(){
       lineToggle();
       $('#container').highcharts({
@@ -129,6 +131,9 @@ function showOneMonth(){
         }]
     });
 }
+/*
+  *显示全部数据
+  */
 function  showAllData(){
        lineToggle();      
        $('#container').highcharts({
@@ -245,7 +250,7 @@ $(function () {
 });
 
 
-
+/*
 function showBMI(){
    $('#container1').highcharts({
         chart: {
@@ -284,4 +289,5 @@ function showBMI(){
         }]
     });
 }
+*/
 

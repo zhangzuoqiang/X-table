@@ -55,6 +55,8 @@ function  creatLineAndPutDataToTable(){
             name: '血氧饱和度',
             width:'2'
         }]}
+  
+  jQuery.support.cors=true;
   $.ajax({
        method:'get',
        url:'http://58.67.201.23/serviceProxy/servlet/'+ new Date(),
@@ -133,9 +135,7 @@ function  creatLineAndPutDataToTable(){
        options_validatestatics.series[1].data=XyElement;
        //创建图表，new Highcharts.Chart options_validatestatics为配置参数
        chart_validatestatics = new Highcharts.Chart(options_validatestatics);
-       alert(MbElement);
-       alert(XyElement);
-       alert(options_validatestatics.series);
+    
        }
        else{
             console.log(XMLHttpRequest.status);

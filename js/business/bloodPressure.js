@@ -69,7 +69,7 @@ $('#weightData').bind('click',function(){
 });
 
 function getBpDataToTable(){
-    
+    jQuery.support.cors = true;
     $.ajax({
        type:"get",
        url:"http://58.67.201.23/serviceProxy/servlet/",
@@ -82,7 +82,9 @@ function getBpDataToTable(){
         "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
        },
       dataType:"json",
-        error:function(data){
+     
+        error:function(readyState,status,error){
+          console.log(readyState+status+error);
         
          
        },
