@@ -104,14 +104,14 @@ function getBpDataToTable(){
                 clonedTr.children("td").each(function(inner_index){
                    switch(inner_index){
                        case(0):
-                         $(this).text(data.BODY.data[inner_index].JCRQ.slice(0,-2));
+                         $(this).text(item.JCRQ.slice(0,-2));
                        break;
                        case(1):
-                         $(this).text(data.BODY.data[inner_index].YHMC);
+                         $(this).text(item.YHMC);
                        break;
                        case(2):
                          
-                         if (data.BODY.data[inner_index].SJZT==1) {
+                         if (item.SJZT==1) {
                           $(this).text('正常');
                          }
                          else{
@@ -119,14 +119,14 @@ function getBpDataToTable(){
                          }
                        break;
                        case(3):
-                        $(this).text(data.BODY.data[inner_index].SZY);
+                        $(this).text(item.SZY);
                         break;
                        case(4):
-                       $(this).text(data.BODY.data[inner_index].SSY);
+                        $(this).text( item.SSY);
 
                       break;
                       case(5):
-                        $(this).text(data.BODY.data[inner_index].PJY);
+                        $(this).text(item.PJY);
                       break;
 
      
