@@ -80,114 +80,25 @@
             <table class="table table-condensed ">
             
             <thead>
-           <tr class="text-center">
+              <tr class="text-center">
                      <td>日期</td>
                      <td>孕妇姓名</td>
-                     <td>当前孕周</td>
-                     <td>早餐前血糖</td>
-                     <td>早餐后血糖</td>
-                     <td>午餐前血糖</td>
-                     <td>午餐后血糖</td>
-                     <td>晚餐前血糖</td>
-                     <td>晚餐后血糖</td>
-                     <td>睡前血糖</td>
-                     <td>操作</td>>
-           </tr>
-       </thead>
-      <tbody>
-      <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-         <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-        <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8<td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-        <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-        <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-        <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-        <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>5.2</td>
-                     <td>4.8</td>
-                     <td>操作</td>
-      </tr>
-   </tbody>
-</table>
+                     <td>检测结果状态</td>
+                     <td>血糖</td>
+                     
+                     
+                     
+             </tr>
+            </thead>
+                  <tbody>
+                      <tr id='cloneTr'>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                           <td></td>
+                        </tr>
+                  </tbody>
+           </table>
        
         </div>
     </div>
@@ -198,7 +109,7 @@
   <!-- Optional, bootstrap javascript library -->
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
-  
+  <script type="text/javascript" src="js/business/bloodSugar.js"></script>
 
   <!--[if lt IE 9] 支持IE9以下新标签>
     <script src="js/html5shiv.js"></script>
@@ -209,55 +120,7 @@
 
 
   <![endif]-->
-  <script type="text/javascript">
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'line'
-        },
-        title:{
-            text:''
-        },
-         credits:{
-            enabled:false 
-      },
-        xAxis: {
-             categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28','30']
-        },
-        yAxis: {
-            title: {
-                text: 'bpm'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: true
-            }
-        },
-        tooltip: {
-                shared: true,
-                crosshairs: true
-            },
-        series: [{
-            name: '心率',
-            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }, {
-            name: '血氧饱和度',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }, {
-            name: '午餐后',
-            data: [5,5,5,5,5,5,5,5,5,5,5,5,5]
-        },
-        { name: '午餐前',
-            data: [6,6,6,6,6,6,6,6,6,6,6,6,6]
-        }]
-    });
-});  
-
-</script>
+ 
  
 </body>
 </html>

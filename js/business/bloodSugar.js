@@ -7,7 +7,7 @@ $(function(){
 function  creatLineAndPutDataToTable(){
  
  //定义体温数组来存储心率用于折线图
-  var WDElement=[];
+  var XTElement=[];
 
   var TimeELement=[]
   
@@ -37,7 +37,7 @@ function  creatLineAndPutDataToTable(){
         },
         yAxis: {
             title: {
-                text: '摄氏度℃'
+                text: 'mmol/L'
             }
         },
         plotOptions: {
@@ -53,7 +53,7 @@ function  creatLineAndPutDataToTable(){
                 crosshairs: true
             },
         series: [{
-            name: '体温',
+            name: '血糖',
             width:'2'
             
         } ]}
@@ -63,12 +63,12 @@ function  creatLineAndPutDataToTable(){
        method:'get',
        url:'http://58.67.201.23/serviceProxy/servlet/',
        data:{
-        "id":"522622198501281033",
-        "startTime":"2014-06-18",
-        "table":"yhtw",
-        "endTime":"2016-01-15",
-        "SERVICE_CODE":"bull.ResourcesHZ.CXDXXX.List",
-        "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
+             "id":"522622198501281033",
+             "startTime":"2015-08-18",
+             "table":"yhxt",
+             "endTime":"2016-01-15",
+             "SERVICE_CODE":"bull.ResourcesHZ.CXDXXX.List",
+             "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
        },
        dataType:"json",
        error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -117,8 +117,8 @@ function  creatLineAndPutDataToTable(){
                        case(3):
                          
                           
-                          $(this).text(item.WD);
-                          WDElement.push([item.JCRQ.slice(0,-2),parseFloat(item.WD)]);
+                          $(this).text(item.XT);
+                          XTElement.push([item.JCRQ.slice(0,-2),parseFloat(item.XT)]);
                        
                         break;
                       
@@ -129,7 +129,7 @@ function  creatLineAndPutDataToTable(){
             });
              
        options_validatestatics.xAxis.categories=TimeELement;
-       options_validatestatics.series[0].data=WDElement;
+       options_validatestatics.series[0].data=XTElement;
       
        //创建图表，new Highcharts.Chart options_validatestatics为配置参数
        chart_validatestatics = new Highcharts.Chart(options_validatestatics);
