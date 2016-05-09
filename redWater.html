@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <!--.针对浏览器的内容做标识（使用meta标签调节浏览器的渲染方式）bootstrap不支持IE兼容模式，为了让IE浏览器运行最新的渲染模式，将添加以下标签在页面中-->
 <!-- 内核控制Meta标签，因为目前国内的主流浏览器都是双内核，故而添加meta标签来告诉浏览器使用什么内核来渲染页面-->
-<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="viewport" content="width=device-width"/>
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 <!--[if IE 6]>
@@ -56,7 +56,7 @@
             
         
         </div>
-         <div class="g-sd clearfix">
+            <div class="g-sd clearfix">
              <h3 class="M-table-tit">历史血脂数据</h3>
             <div class="btn-toolbar fr">
               <div class="btn-group">
@@ -69,108 +69,63 @@
                 <option>近七天</option>
                 <option>近一个月</option>
                 <option>选择时间</option>
-              <select>
-               <input placeholder="选择开始时间"></input><input placeholder="选择结束时间"></input><button class="btn btn-default" type="submit">确定</button>
-              </div>
+                <select>
+               <label for="u-beginTime">选择开始时间</label><input class="laydate-icon" id="u-beginTime" placeholder="选择开始时间">  
+               <label for="u-endTime">选择结束时间</label><input class="laydate-icon" id="u-endTime" placeholder="选择结束时间"><button class="btn btn-default" type="submit">确定</button>
+             </div>
               
                 
             </div>
             
            
-            <table class="table table-condensed ">
+            <table class="table table-bordered table-striped table-condensed">
             
-            <thead>
-           <tr class="text-center">
-                     <td>日期</td>
-                     <td>孕妇姓名</td>
-                     <td>当前孕周</td>
-                     <td>白细胞</td>
-                     <td>潜血</td>
-                     <td>亚硝酸盐</td>
-                     <td>ph值</td>
-                     <td>尿胆酸</td>
-                     <td>胆红素</td>
-                     <td>尿糖</td>
-                     <td>尿比重</td>
-                     <td>酮体</td>
-                     <td>维生素C</td>
-           </tr>
-       </thead>
-      <tbody>
-      <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>-</td>
-                     <td>-1</td>
-                     <td>-</td>
-                     <td>7.0</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>1.001</td>
-                     <td>-</td>
-                     <td>+1</td>
-      </tr>
-          <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td> -</td>
-                     <td> -1</td>
-                     <td> -</td>
-                     <td>7.0</td>
-                     <td> -</td>
-                     <td> -</td>
-                     <td> -</td>
-                     <td> -</td>
-                     <td>1.001</td>
-                     <td> -</td>
-                     <td>+1</td>
-      </tr>
-          <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>-</td>
-                     <td>-1</td>
-                     <td>-</td>
-                     <td>7.0</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>1.001</td>
-                     <td>-</td>
-                     <td>+1</td>
-      </tr>
-          <tr>
-                     <td>2016-4-17</td>
-                     <td>张思瑞</td>
-                     <td>16周</td>
-                     <td>-</td>
-                     <td>-1</td>
-                     <td>-</td>
-                     <td>7.0</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>-</td>
-                     <td>1.001</td>
-                     <td>-</td>
-                     <td>+1</td>
-      </tr>
-       
-   </tbody>
-</table>
-       
+                      <thead>
+                                   <tr class="text-center">
+                                             <td>日期</td>
+                                             <td>孕妇姓名</td>
+                                             <td>白细胞BXB</td>
+                                             <td>葡萄糖PTT</td>
+                                             <td>亚硝酸盐YXSY</td>
+                                             <td>ph值PH</td>
+                                             <td>红细胞HXB</td>
+                                             <td>尿胆酸NDY</td>
+                                             <td>胆红素DHS</td>
+                                             <td>蛋白质DBZ</td>
+                                             <td>尿比重BZ</td>
+                                             <td>酮体TT</td>
+                                             <td>维生素CWSSC</td>
+                                   </tr>
+                               </thead>
+                                <tbody>
+                                         <tr id='cloneTr' class='text-center'>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                         </tr>
+                            
+                                </tbody>
+            </table>
+                               
         </div>
     </div>
   
 </div>
  <!-- jQuery 1.7.2 or higher -->
   <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="js/highcharts.js"></script>
+  <script type="text/javascript" src="js/exporting.js"></script>
+  <script type='text/javascript' src="js/business/redWater.js"></script
   <!-- Optional, bootstrap javascript library -->
   
 

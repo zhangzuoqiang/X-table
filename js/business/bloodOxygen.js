@@ -1,13 +1,49 @@
-
+//页面加载
 $(function(){
    creatLineAndPutDataToTable();
+   creatDataPicker();
+  
   
 });
 
-function  creatLineAndPutDataToTable(){
+/*
+ * 日期控件声明
+ */
+ var beginTime;
+ var endTime;
+ var maxData='2099-06-16';
+ var minData='2000-00-01';
+
+
+var dataPickerOptions={
+
+}
+function creatDataPicker(){
+  laydate({
+    elem: '#u-beginTime',  
+    event: 'click',
+    choose: function(datas){ //选择日期完毕的回调
+      var beginTime=datas
+        alert('得到：'+beginTime);
+
+    } 
  
-  
- //定义空数组存储血氧饱和度用于折线图
+  });
+   
+    laydate({
+    elem: '#u-endTime', 
+    event: 'click',  
+    choose: function(datas){ //选择日期完毕的回调
+      var endTime=datas
+        alert('得到：'+datas);
+    } 
+   
+    });
+}
+
+
+function  creatLineAndPutDataToTable(beginTime,endTime){
+  //定义空数组存储血氧饱和度用于折线图
   var XyElement=[];
  //定义空数组来存储心率用于折线图
   var MbElement=[];
@@ -62,9 +98,9 @@ function  creatLineAndPutDataToTable(){
        url:'http://58.67.201.23/serviceProxy/servlet/'+ new Date(),
        data:{
          "id":"522622198501281033",
-         "startTime":"2015-08-18",
+         "startTime":minData,
          "table":"yhxy01",
-         "endTime":"2016-01-15",
+         "endTime":maxData,
          "SERVICE_CODE":"bull.ResourcesHZ.CXDXXX.List",
          "CONSUMER_ID":"test-3db1115089554ee5baf819409034c399"
        },
@@ -151,3 +187,27 @@ function  creatLineAndPutDataToTable(){
     });
 }
 
+/*
+var startOptions = {
+    elem: '#start',
+    format: 'YYYY/MM/DD',
+    max: '2099-06-16 23:59:59', //最大日期
+    istime: true, //是否显示确认
+    istoday: true,////是否显示今天
+    choose: function(datas){
+         var beginTime=datas;
+    }
+};
+var endOptions = {
+    elem: '#end',
+    format: 'YYYY/MM/DD',
+    min: '2000-00-01',
+    max: '2099-06-16',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        var endTime=datas; //结束日选好后，重置开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);*/
