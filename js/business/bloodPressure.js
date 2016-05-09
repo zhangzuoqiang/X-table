@@ -1,33 +1,33 @@
 // 取得tabel
-var table=$("#weightHidden");
-//获取到canvas
-var canvas=$("#container");
+	var table=$("#weightHidden");
+	//获取到canvas
+	var canvas=$("#container");
 
-var btn1=$('#weightTable');
+	var btn1=$('#weightTable');
 
-var btn2=$('#weightData');
+	var btn2=$('#weightData');
 
 
 
-$(function () {
+	$(function () {
 	
 		$('#weightHidden').hide();
 		 getBpDataToTable();
 
-});
+	});
 			 
-$('#weightTable').bind('click',function(){
+	$('#weightTable').bind('click',function(){
 		 btn2.removeClass('select');
 			btn1.addClass('select');
 			table.hide();
 			canvas.show();
-});
-$('#weightData').bind('click',function(){
+	});
+   $('#weightData').bind('click',function(){
 		btn1.removeClass('select');
 		btn2.addClass('select');
 		canvas.hide();
 		table.show();
-});
+    });
 
 function getBpDataToTable(){
         //定义体温数组来存储心率用于折线图
@@ -125,59 +125,59 @@ function getBpDataToTable(){
 					alert('a');
 					console.log(data);
 					console.log('请求成功');
-				
-				if (data.SYS_HEAD.RET_STATUS=='S') {
 
-						var tr=$('#cloneTr');
-						
-						$.each(data.BODY.data,function(index,item){
-								//克隆tr，每次遍历都可以产生新的tr,对一横行进行处理 
-								var clonedTr = tr.clone(); 
-								var _index = index; 
-								//根据索引为每一个td赋值  
-								
-								clonedTr.children("td").each(function(inner_index){
-									 switch(inner_index){
-											 case(0):
-												 $(this).text(item.JCRQ.slice(0,-2));
-												 TimeELement.push(item.JCRQ.slice(0,-2));
-											 break;
-											 case(1):
-												 $(this).text(item.YHMC);
+if (data.SYS_HEAD.RET_STATUS=='S') {
 
-											 break;
-											 case(2):
-												 
-												 if (item.SJZT==1) {
-													$(this).text('正常');
-												 }
-												 else{
-													$(this).text('异常');
-												 }
-											 break;
-											 case(3):
-												$(this).text(item.SZY);
-												SZYElement.push([TimeELement,parseFloat(item.SZY)]);
-												break;
-											 case(4):
-												$(this).text(item.SSY);
-												SSYElement.push([TimeELement,parseFloat(item.SSY)]);
+	var tr=$('#cloneTr');
+	
+	$.each(data.BODY.data,function(index,item){
+			//克隆tr，每次遍历都可以产生新的tr,对一横行进行处理 
+			var clonedTr = tr.clone(); 
+			var _index = index; 
+			//根据索引为每一个td赋值  
+			
+			clonedTr.children("td").each(function(inner_index){
+				 switch(inner_index){
+						 case(0):
+							 $(this).text(item.JCRQ.slice(0,-2));
+							 TimeELement.push(item.JCRQ.slice(0,-2));
+						 break;
+						 case(1):
+							 $(this).text(item.YHMC);
 
-											break;
-											case(5):
-												$(this).text(item.PJY);
-												PJYElement.push([TimeELement,parseFloat(item.PJY)]);
-											break;
+						 break;
+						 case(2):
+							 
+							 if (item.SJZT==1) {
+								$(this).text('正常');
+							 }
+							 else{
+								$(this).text('异常');
+							 }
+						 break;
+						 case(3):
+							$(this).text(item.SZY);
+							SZYElement.push([TimeELement,parseFloat(item.SZY)]);
+							break;
+						 case(4):
+							$(this).text(item.SSY);
+							SSYElement.push([TimeELement,parseFloat(item.SSY)]);
 
-		 
-									}
-								
-								});
-								clonedTr.insertAfter(tr);});
-						         options_validatestatics.xAxis.categories=TimeELement;
-                                 options_validatestatics.series[0].data=SSYElement;
-                                 options_validatestatics.series[1].data=SZYElement;
-                                 options_validatestatics.series[2].data=PJYElement;
+						break;
+						case(5):
+							$(this).text(item.PJY);
+							PJYElement.push([TimeELement,parseFloat(item.PJY)]);
+						break;
+
+
+				}
+			
+			});
+			clonedTr.insertAfter(tr);});
+	         options_validatestatics.xAxis.categories=TimeELement;
+             options_validatestatics.series[0].data=SSYElement;
+             options_validatestatics.series[1].data=SZYElement;
+             options_validatestatics.series[2].data=PJYElement;
 
       
        //创建图表，new Highcharts.Chart options_validatestatics为配置参数
