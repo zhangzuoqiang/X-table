@@ -236,7 +236,7 @@ function toggle(){
  */
 $(function () {
    
-    dataPicker();
+    creatDataPicker();
    
     showAllData();
   

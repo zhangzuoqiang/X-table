@@ -6,50 +6,11 @@ var canvas=$("#container");
 var btn1=$('#weightTable');
 
 var btn2=$('#weightData');
-function shoWTable(){ 
 
-		$('#container').highcharts({
-				chart: {
-						type: 'line'
-				},
-				title:{
-						text:''
-				},
-				
-				xAxis: {
-						categories: ['0', '2', '4', '6', '8', '12', '14', '16', '18', '20','22','24','26','28' ]
-				},
-				yAxis: {
-						title: {
-								text: '体重(kg)'
-						}
-				},
-				plotOptions: {
-						line: {
-								dataLabels: {
-										enabled: true
-								},
-								enableMouseTracking: true
-						}
-				},
-				tooltip: {
-								shared: true,
-								crosshairs: true
-						},
-				series: [{
-						name: '收缩压',
-						data: [57, 56.9, 59.5, 59.5, 60.4, 61.5, 62.2, 66.5, 63.3, 65.3, 63.9, 65.6]
-				},
-				{
-						name: '舒张压',
-						data: [67, 70.9, 79.5, 69.5, 70.4, 71.5, 72.2, 76.5, 73.3, 75.3, 73.9, 75.6]
-				}]
-		});
-}
 
 
 $(function () {
-		shoWTable();
+	
 		$('#weightHidden').hide();
 		 getBpDataToTable();
 
@@ -69,6 +30,78 @@ $('#weightData').bind('click',function(){
 });
 
 function getBpDataToTable(){
+        //定义体温数组来存储心率用于折线图
+  var SZYElement=[];
+
+  var SSYElement=[];
+
+  var PJYElement=[];
+
+  var TimeELement=[]
+  
+  var chart_validatestatics;
+  //折线图配置参数
+  var options_validatestatics={
+        chart: {
+            renderTo: 'container',
+            type: 'line'
+        },
+        lang: {
+            printChart: '打印图表',
+            downloadPNG: '下载JPEG 图片',
+            downloadJPEG: '下载JPEG文档',
+            downloadPDF: '下载PDF 文件',
+            downloadSVG: '下载SVG 矢量图',
+            contextButtonTitle: '下载图片'
+        },
+        title:{
+            text:''
+        },
+         legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+         credits:{
+            enabled:false 
+       },
+        xAxis: {
+           
+        },
+        yAxis: {
+            title: {
+                text: '摄氏度℃'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
+        tooltip: {
+                shared: true,
+                crosshairs: true
+            },
+        series: [{
+            name: '收缩压',
+            width:'2'
+            
+        },{
+            name: '扩张压',
+            width:'2'
+            
+        },{
+            name: '平均压',
+            width:'2'
+            
+        }
+         ]}
+
+
 		jQuery.support.cors = true;
 		$.ajax({
 			 type:"get",
@@ -107,9 +140,11 @@ function getBpDataToTable(){
 									 switch(inner_index){
 											 case(0):
 												 $(this).text(item.JCRQ.slice(0,-2));
+												 TimeELement.push(item.JCRQ.slice(0,-2));
 											 break;
 											 case(1):
 												 $(this).text(item.YHMC);
+
 											 break;
 											 case(2):
 												 
@@ -122,13 +157,16 @@ function getBpDataToTable(){
 											 break;
 											 case(3):
 												$(this).text(item.SZY);
+												SZYElement.push([TimeELement,parseFloat(item.SZY)]);
 												break;
 											 case(4):
 												$(this).text(item.SSY);
+												SSYElement.push([TimeELement,parseFloat(item.SSY)]);
 
 											break;
 											case(5):
 												$(this).text(item.PJY);
+												PJYElement.push([TimeELement,parseFloat(item.PJY)]);
 											break;
 
 		 
@@ -136,6 +174,14 @@ function getBpDataToTable(){
 								
 								});
 								clonedTr.insertAfter(tr);});
+						         options_validatestatics.xAxis.categories=TimeELement;
+                                 options_validatestatics.series[0].data=SSYElement;
+                                 options_validatestatics.series[1].data=SZYElement;
+                                 options_validatestatics.series[2].data=PJYElement;
+
+      
+       //创建图表，new Highcharts.Chart options_validatestatics为配置参数
+       chart_validatestatics = new Highcharts.Chart(options_validatestatics);
 					
 			 }
 			 else{
