@@ -29,7 +29,7 @@ $(document).ready(function(){
         },
         yAxis: {
             title: {
-                text: '摄氏度℃'
+                text: '次数'
             }
         },
         

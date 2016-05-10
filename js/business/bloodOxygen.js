@@ -4,7 +4,7 @@ var endTime='';
 //页面加载
 $(function(){
    //默认加载'2015-08-18'到'2016-01-15'区间数据.
-   creatLineAndPutDataToTable('2000-00-01','2099-06-16');
+   creatLineAndPutDataToTable('2015-08-18','2016-01-15');
    showTableAsSelect(options);
  
 });
@@ -64,7 +64,7 @@ laydate(endOptions);
  * @return {[type]}           [description]
  */
 
-function timeLag(beginTime,endTime){
+/*function timeLag(beginTime,endTime){
    alert(typeof beginTime);
    var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(4,2),beginTime.substr(6,2));
    var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(4,2),endTime(6,2));
@@ -73,7 +73,7 @@ function timeLag(beginTime,endTime){
     alert('请选择，正确的时间');
     return;
   }
-}  
+}  */
 
 /*
  *表格和数组的配置参数
@@ -243,9 +243,11 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
  }     
     });
 }
+
+
 /**
  * [lineToggle 清理页面中的折线图，重新生成一个新的折线图]
- * @return {[type]} [description]
+ * @return {[type]} 
  */
 function lineToggle() {
     $('#container').remove();
@@ -254,17 +256,20 @@ function lineToggle() {
       warp.css({ "min-width":"310px","height": "400px" ,"margin":"0 auto"});
       $('.g-sd').append(warp);
 }
-/**
- * [点击提交]
- * @param  {[type]} ){ lineToggle();   creatLineAndPutDataToTable(beginTime,endTime);} [description]
- * @return {[type]}     [description]
+
+
+/*
+ * 点击提交
  */
 $('#u-submit').bind('click',function(){
-   timeLag();
-   lineToggle();
+  alert('a');
 
+   lineToggle();
    creatLineAndPutDataToTable(beginTime,endTime);
 })
+
+
+
 /**
  * [因为js中的月份是从0开始，所以需要进行转换]
  * @param  {[num]} number [传入的数字]
@@ -277,14 +282,6 @@ $('#u-submit').bind('click',function(){
  function format(date){
       return date.getFullYear()+'-'+padding(date.getMouth()+1)+'-'+padding(date.getDate())+''+padding(date.gethours())+':'+padding(date.getMinutes())+':'+padding(date.getSeconds());
  }
-
-/*(function{
-  //lineToggle();
-  var endTime=new Data();
-  console.log(endTime);
-  creatLineAndPutDataToTable(beginTime,endTime);
-});
-*/
 
 
 
