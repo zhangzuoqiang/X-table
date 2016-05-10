@@ -41,7 +41,7 @@ function lineToggle() {
     $('#container').remove();
       var warp=$(document.createElement('div'));
       warp.attr("id","container");
-      warp.css({ "min-width":"310px","height": "350px" ,"margin":"0 auto"});
+      warp.css({ "min-width":"310px","height": "400px" ,"margin":"0 auto"});
       $('.g-sd').append(warp);
 }
 

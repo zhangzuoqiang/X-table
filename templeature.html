@@ -67,12 +67,11 @@
                <button class="btn btn-info" type="submit">当前测2次</button>
               </div>
               <div class="btn-group">
+                <select id="daySelect" >
+                <option value="all">全部</option>
+                <option value="severnDay">近七天</option>
+                <option value="oneMouth">近一个月</option>
                 <select>
-                <option>全部</option>
-                <option>近七天</option>
-                <option>近一个月</option>
-                <option>选择时间</option>
-              <select>
                <input placeholder="选择开始时间"></input><input placeholder="选择结束时间"></input><button class="btn btn-default" type="submit">确定</button>
               </div>
               
@@ -114,6 +113,7 @@
   <!-- Optional, bootstrap javascript library -->
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
+  <script type="text/javascript" src="js/laydate/laydate.js"></script>
  <script type='text/javascript' src="js/business/templeature.js"></script>
 
   <!--[if lt IE 9] 支持IE9以下新标签>

@@ -68,14 +68,13 @@
          <div class="g-sd">
           
             <div class="M-table-btn fr">
+                <select id="daySelect" >
+                <option value="all">全部</option>
+                <option value="severnDay">近七天</option>
+                <option value="oneMouth">近一个月</option>
                 <select>
-                <option>全部</option>
-                <option>近七天</option>
-                <option>近一个月</option>
-               
-              <select>
             <label for="u-beginTime">选择开始时间</label><input class="laydate-icon" id="u-beginTime" placeholder="选择开始时间">  
-               <label for="u-endTime">选择结束时间</label><input class="laydate-icon" id="u-endTime" placeholder="选择结束时间"><button class="btn btn-default" type="submit">确定</button>
+               <label for="u-endTime">选择结束时间</label><input class="laydate-icon" id="u-endTime" placeholder="选择结束时间"><button class="btn btn-default" id="u-submit" type="submit">确定</button>
             </div>
             <div class="M-table-tit clearfix">
                 <h3 class="user-info">血氧</h3>
