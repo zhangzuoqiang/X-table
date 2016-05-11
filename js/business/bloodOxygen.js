@@ -259,7 +259,7 @@ function timeLag(){
   alert('请选择，正确的时间');
   
 }
-
+}
 
 /*
  * 点击提交

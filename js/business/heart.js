@@ -131,7 +131,7 @@ $(document).ready(function(){
     $('#container1').highcharts({
 
         title: {
-            text: 'July temperatures'
+            text: '宫缩'
         },
 
         xAxis: {
@@ -142,6 +142,14 @@ $(document).ready(function(){
             title: {
                 text: null
             }
+        },
+         lang: {
+            printChart: '打印图表',
+            downloadPNG: '下载JPEG 图片',
+            downloadJPEG: '下载JPEG文档',
+            downloadPDF: '下载PDF 文件',
+            downloadSVG: '下载SVG 矢量图',
+            contextButtonTitle: '下载图片'
         },
         credits:{
             enabled:false 
