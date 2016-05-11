@@ -5,7 +5,10 @@ var endTime='';
 $(function(){
    //默认加载'2015-08-18'到'2016-01-15'区间数据.
    creatLineAndPutDataToTable('2015-08-18','2016-01-15');
-   showTableAsSelect(options);
+  $("#daySelect").change(function(){
+      var options=$("#daySelect option:selected").val(); 
+      showTableAsSelect(options);
+    });
  
 });
 /**
@@ -13,18 +16,21 @@ $(function(){
  * @param  {[string]} options [description]
  * @return {[type]}         [description]
  */
-/*function showTableAsSelect(options){
-    $("#daySelect").change(function(){
-    var options=$("#daySelect option:selected").val(); 
+function showTableAsSelect(options){
     
     if (options=='all') {
+        alert('a');
         showAllData();
     }
     if (options=='severnDay') {
-       shoWSenvenDay();
+      alert('b');
+      shoWSenvenDay();
+
     }
     else{
+      alert('c');
        showOneMonth();
+       
        }
 }       
 /*!
@@ -51,7 +57,7 @@ var endOptions = {
     istoday: true,
     choose: function(datas){
        
-        var endTime=datas; //结束日选好后
+        var endTime=datas; 
     }
 };
 laydate(startOptions);
@@ -158,18 +164,7 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
         console.log(textStatus);
 
        },
-       beforeSend:function timeLag(){
-           console.log(beginTime+endTime);
-           var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(5,2)-1,beginTime.substr(8,2));
-           console.log(numberbeginTime);
-           var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
-           console.log(numberEndendTime);
-           var lag=numberEndendTime.getTime()-numberbeginTime.getTime();
-           if (lag<=0) {
-            alert('请选择，正确的时间');
-            return;
-          }
-        },
+       
        success:function(data){
           
           console.log(data);
@@ -205,21 +200,14 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
                          }
                        break;
                        case(3):
-                         
-                       
                           $(this).text(item.XY);
                           XyElement.push([item.JCRQ.slice(0,-2),parseInt(item.XY)]);
-                       
-                        break;
+                       break;
                        case(4):
-                      
-                      
-
                          $(this).text(parseInt(item.MB));
                          MbElement.push([item.JCRQ.slice(0,-2),parseInt(item.MB)]);
                        break;
-                
-                  }
+                    }
                 
                 });
                 clonedTr.insertAfter(tr);
@@ -254,22 +242,62 @@ function lineToggle() {
       var warp=$(document.createElement('div'));
       warp.attr("id","container");
       warp.css({ "min-width":"310px","height": "400px" ,"margin":"0 auto"});
-      $('.g-sd').append(warp);
+      $('.g-mn').append(warp);
 }
-
+/**
+ * [timeLag 比较两个日期的大小]
+ * @return {[type]} [description]
+ */
+function timeLag(){
+ console.log(beginTime+endTime);
+ var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(5,2)-1,beginTime.substr(8,2));
+ console.log(numberbeginTime);
+ var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
+ console.log(numberEndendTime);
+ var lag=numberEndendTime.getTime()-numberbeginTime.getTime();
+ if (lag<=0) {
+  alert('请选择，正确的时间');
+  
+}
+}
 
 /*
  * 点击提交
  */
 $('#u-submit').bind('click',function(){
-  alert('a');
-
+   
+   timeLag();
    lineToggle();
    creatLineAndPutDataToTable(beginTime,endTime);
 })
 
+function showAllData(){
+  creatLineAndPutDataToTable('2000-00-01','2100-00-01');
+}
+function shoWSenvenDay(){
+  var today=new Date();
+  //生成JSON请求时间段
+  var todayString=format(today).toString();
 
+  console.log(todayString);
+ 
+  var severnDay=new Date(today.getTime()-(7*1000*60*60*24));
 
+  var severnDayString=format(severnDay).toString();
+    console.log(severnDayString);
+
+    creatLineAndPutDataToTable(severnDayString,todayString);
+}
+
+function showOneMonth(){
+  var today=new Date();
+  //生成JSON请求时间段
+  var todayString=format(today).toString();
+  //30天前，一个月(偷懒)
+  var severnDay=new Date(today.getTime()-(30*1000*60*60*24));
+  var severnDayString=format(severnDay).toString();
+   creatLineAndPutDataToTable(severnDayString,todayString);
+}
 /**
  * [因为js中的月份是从0开始，所以需要进行转换]
  * @param  {[num]} number [传入的数字]
@@ -280,8 +308,8 @@ $('#u-submit').bind('click',function(){
  }
  // formatData
  function format(date){
-      return date.getFullYear()+'-'+padding(date.getMouth()+1)+'-'+padding(date.getDate())+''+padding(date.gethours())+':'+padding(date.getMinutes())+':'+padding(date.getSeconds());
- }
+      return date.getFullYear()+'-'+padding(date.getMonth()+1)+'-'+padding(date.getDate());
+    }
 
 
 
