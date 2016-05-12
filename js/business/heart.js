@@ -26,14 +26,14 @@ $(document).ready(function(){
             enabled:false 
        },
         xAxis: {
-          type: 'datetime',
-         /* gridLineColor: '#FF0000'*/
+          type: 'linear',
+        /*  gridLineColor: 'RGB(244,160,185)'*/
         },
         yAxis: {
             title: {
                 text: '摄氏度℃'
             },
-           /* gridLineColor: '#FF0000'*/
+         /*  gridLineColor: 'RGB(244,160,185)'*/
         },
         tooltip: {
             crosshairs: true,
@@ -43,7 +43,7 @@ $(document).ready(function(){
     
         series: [{
             name: '胎心率',
-           /* color : "#ff00ff",*/
+         /*  Color: 'RGB(244,160,185)',*/
             width:'1'
            
             }]
@@ -59,10 +59,12 @@ $(document).ready(function(){
 
 
     }  
-     
+       var xElementResult=xElement.filter(function(item,index,array){
+           return index<1;
+       });
       console.log(xElement.length);
       console.log(yELement.length);
-      options_validatestatics.xAxis.categories=xElement;
+      options_validatestatics.xAxis.categories= xElementResult;
       options_validatestatics.series[0].data=yELement;
       var chartLine=new Highcharts.Chart(options_validatestatics);
 
@@ -139,7 +141,7 @@ $(document).ready(function(){
     $('#container1').highcharts({
 
         title: {
-            text: '宫缩'
+            text: ''
         },
 
         xAxis: {

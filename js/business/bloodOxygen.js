@@ -19,19 +19,22 @@ $(function(){
 function showTableAsSelect(options){
     
     if (options=='all') {
-        alert('a');
+        alert('a')
         showAllData();
+
     }
     if (options=='severnDay') {
       alert('b');
       shoWSenvenDay();
 
     }
-    else{
+    if (options=='oneMonth') {
       alert('c');
-       showOneMonth();
+      showOneMonth();
+
+    }
        
-       }
+       
 }       
 /*!
  * startOptions和endOptions，为日期控件配置参数
@@ -84,12 +87,7 @@ laydate(endOptions);
 /*
  *表格和数组的配置参数
  */
- //定义空数组存储血氧饱和度用于折线图
-  var XyElement=[];
- //定义空数组来存储心率用于折线图
-  var MbElement=[];
 
-  var TimeELement=[]
   
   var chart_validatestatics;
   //折线图配置参数
@@ -142,8 +140,15 @@ laydate(endOptions);
  * @return {[obj]}           [返回生成数据的折线图和表格]
  */
 function  creatLineAndPutDataToTable(beginTime,endTime){
+
   this.beginTime=beginTime;
   this.endTime=endTime;
+  //定义空数组存储血氧饱和度用于折线图
+  var XyElement=[];
+ //定义空数组来存储心率用于折线图
+  var MbElement=[];
+
+  var TimeELement=[]
   //跨域支持
   jQuery.support.cors=true;
   $.ajax({
@@ -212,8 +217,19 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
                 });
                 clonedTr.insertAfter(tr);
             });
-             
-       options_validatestatics.xAxis.categories=TimeELement;
+          
+            if(TimeELement.length>30){
+
+            var TimeELementResult=TimeELement.filter(function(item,index,array){
+                return  (index%10==0);
+                alert(TimeELementResult.length);
+                console.log(TimeELement.length);
+            });
+          }
+          else{
+          TimeELementResult=TimeELement
+          }
+       options_validatestatics.xAxis.categories=TimeELementResult;
        options_validatestatics.series[0].data=MbElement;
        options_validatestatics.series[1].data=XyElement;
        //创建图表，new Highcharts.Chart options_validatestatics为配置参数
@@ -230,6 +246,7 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
   
  }     
     });
+
 }
 
 
@@ -243,6 +260,7 @@ function lineToggle() {
       warp.attr("id","container");
       warp.css({ "min-width":"310px","height": "400px" ,"margin":"0 auto"});
       $('.g-mn').append(warp);
+
 }
 /**
  * [timeLag 比较两个日期的大小]
@@ -265,14 +283,23 @@ function timeLag(){
  * 点击提交
  */
 $('#u-submit').bind('click',function(){
-   
-   timeLag();
+  //
+  var XyElement=[];
+  var MbElement=[];
+  var TimeELement=[]
    lineToggle();
    creatLineAndPutDataToTable(beginTime,endTime);
 })
 
 function showAllData(){
-  creatLineAndPutDataToTable('2000-00-01','2100-00-01');
+  lineToggle();
+ /* $('tbody').empty();*/
+  var XyElement=[];
+  var MbElement=[];
+  var TimeELement=[]
+
+  creatLineAndPutDataToTable('2010-08-18','2030-01-15');
+   options_validatestatics.xAxis.type='linear';
 }
 function shoWSenvenDay(){
   var today=new Date();
@@ -298,6 +325,7 @@ function showOneMonth(){
   var severnDayString=format(severnDay).toString();
    creatLineAndPutDataToTable(severnDayString,todayString);
 }
+
 /**
  * [因为js中的月份是从0开始，所以需要进行转换]
  * @param  {[num]} number [传入的数字]
@@ -309,7 +337,7 @@ function showOneMonth(){
  // formatData
  function format(date){
       return date.getFullYear()+'-'+padding(date.getMonth()+1)+'-'+padding(date.getDate());
-    }
+  }
 
 
 
