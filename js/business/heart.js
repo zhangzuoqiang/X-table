@@ -26,18 +26,26 @@ $(document).ready(function(){
             enabled:false 
        },
         xAxis: {
-           
+          type: 'datetime',
+         /* gridLineColor: '#FF0000'*/
         },
         yAxis: {
             title: {
                 text: '摄氏度℃'
-            }
+            },
+           /* gridLineColor: '#FF0000'*/
         },
-        
+        tooltip: {
+            crosshairs: true,
+            shared: true,
+            valueSuffix: '次数'
+        },
+    
         series: [{
             name: '胎心率',
+           /* color : "#ff00ff",*/
             width:'1'
-
+           
             }]
     }
 
