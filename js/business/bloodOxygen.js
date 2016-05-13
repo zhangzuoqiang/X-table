@@ -4,8 +4,11 @@ var endTime='';
 //页面加载
 $(function(){
    //默认加载'2015-08-18'到'2016-01-15'区间数据.
-   creatLineAndPutDataToTable('2000-00-01','2099-06-16');
-   showTableAsSelect(options);
+   creatLineAndPutDataToTable('2015-08-18','2016-01-15');
+  $("#daySelect").change(function(){
+      var options=$("#daySelect option:selected").val(); 
+      showTableAsSelect(options);
+    });
  
 });
 /**
@@ -13,19 +16,25 @@ $(function(){
  * @param  {[string]} options [description]
  * @return {[type]}         [description]
  */
-/*function showTableAsSelect(options){
-    $("#daySelect").change(function(){
-    var options=$("#daySelect option:selected").val(); 
+function showTableAsSelect(options){
     
     if (options=='all') {
+        alert('a')
         showAllData();
+
     }
     if (options=='severnDay') {
-       shoWSenvenDay();
+      alert('b');
+      shoWSenvenDay();
+
     }
-    else{
-       showOneMonth();
-       }
+    if (options=='oneMonth') {
+      alert('c');
+      showOneMonth();
+
+    }
+       
+       
 }       
 /*!
  * startOptions和endOptions，为日期控件配置参数
@@ -51,7 +60,7 @@ var endOptions = {
     istoday: true,
     choose: function(datas){
        
-        var endTime=datas; //结束日选好后
+        var endTime=datas; 
     }
 };
 laydate(startOptions);
@@ -64,7 +73,7 @@ laydate(endOptions);
  * @return {[type]}           [description]
  */
 
-function timeLag(beginTime,endTime){
+/*function timeLag(beginTime,endTime){
    alert(typeof beginTime);
    var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(4,2),beginTime.substr(6,2));
    var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(4,2),endTime(6,2));
@@ -73,17 +82,12 @@ function timeLag(beginTime,endTime){
     alert('请选择，正确的时间');
     return;
   }
-}  
+}  */
 
 /*
  *表格和数组的配置参数
  */
- //定义空数组存储血氧饱和度用于折线图
-  var XyElement=[];
- //定义空数组来存储心率用于折线图
-  var MbElement=[];
 
-  var TimeELement=[]
   
   var chart_validatestatics;
   //折线图配置参数
@@ -136,8 +140,15 @@ function timeLag(beginTime,endTime){
  * @return {[obj]}           [返回生成数据的折线图和表格]
  */
 function  creatLineAndPutDataToTable(beginTime,endTime){
+
   this.beginTime=beginTime;
   this.endTime=endTime;
+  //定义空数组存储血氧饱和度用于折线图
+  var XyElement=[];
+ //定义空数组来存储心率用于折线图
+  var MbElement=[];
+
+  var TimeELement=[]
   //跨域支持
   jQuery.support.cors=true;
   $.ajax({
@@ -158,22 +169,10 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
         console.log(textStatus);
 
        },
-       beforeSend:function timeLag(){
-           console.log(beginTime+endTime);
-           var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(5,2)-1,beginTime.substr(8,2));
-           console.log(numberbeginTime);
-           var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
-           console.log(numberEndendTime);
-           var lag=numberEndendTime.getTime()-numberbeginTime.getTime();
-           if (lag<=0) {
-            alert('请选择，正确的时间');
-            return;
-          }
-        },
+       
        success:function(data){
           
-          console.log(data);
-          console.log('获取数据成功');
+         
         
         if (data.SYS_HEAD.RET_STATUS=='S') {
 
@@ -205,27 +204,31 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
                          }
                        break;
                        case(3):
-                         
-                       
                           $(this).text(item.XY);
                           XyElement.push([item.JCRQ.slice(0,-2),parseInt(item.XY)]);
-                       
-                        break;
+                       break;
                        case(4):
-                      
-                      
-
                          $(this).text(parseInt(item.MB));
                          MbElement.push([item.JCRQ.slice(0,-2),parseInt(item.MB)]);
                        break;
-                
-                  }
+                    }
                 
                 });
                 clonedTr.insertAfter(tr);
             });
-             
-       options_validatestatics.xAxis.categories=TimeELement;
+          
+            if(TimeELement.length>30){
+
+            var TimeELementResult=TimeELement.filter(function(item,index,array){
+                return  (index%10==0);
+                alert(TimeELementResult.length);
+                console.log(TimeELement.length);
+            });
+          }
+          else{
+          TimeELementResult=TimeELement
+          }
+       options_validatestatics.xAxis.categories=TimeELementResult;
        options_validatestatics.series[0].data=MbElement;
        options_validatestatics.series[1].data=XyElement;
        //创建图表，new Highcharts.Chart options_validatestatics为配置参数
@@ -242,29 +245,98 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
   
  }     
     });
+
 }
+
+
 /**
  * [lineToggle 清理页面中的折线图，重新生成一个新的折线图]
- * @return {[type]} [description]
+ * @return {[type]} 
  */
 function lineToggle() {
     $('#container').remove();
       var warp=$(document.createElement('div'));
       warp.attr("id","container");
       warp.css({ "min-width":"310px","height": "400px" ,"margin":"0 auto"});
-      $('.g-sd').append(warp);
+      $('.g-mn').append(warp);
+
+}
+
+
+function  TableCLear(){
+   $('.g-sd tbody').empty();
+   var clonedTr=$("<tr id='cloneTr'><td></td><td></td><td></td><td></td><td></td></tr>")
+   $('.g-sd tbody').append(clonedTr);
 }
 /**
- * [点击提交]
- * @param  {[type]} ){ lineToggle();   creatLineAndPutDataToTable(beginTime,endTime);} [description]
- * @return {[type]}     [description]
+ * [timeLag 比较两个日期的大小]
+ * @return {[type]} [description]
+ */
+function timeLag(){
+ console.log(beginTime+endTime);
+ var numberbeginTime=new Date(beginTime.substr(0,4),beginTime.substr(5,2)-1,beginTime.substr(8,2));
+ console.log(numberbeginTime);
+ var numberEndendTime=new Date(endTime.substr(0,4),endTime.substr(5,2)-1,endTime.substr(8,2));
+ console.log(numberEndendTime);
+ var lag=numberEndendTime.getTime()-numberbeginTime.getTime();
+ if (lag<=0) {
+  alert('请选择，正确的时间');
+  
+}
+}
+
+/*
+ * 点击提交
  */
 $('#u-submit').bind('click',function(){
-   timeLag();
+  //
+  var XyElement=[];
+  var MbElement=[];
+  var TimeELement=[]
    lineToggle();
-
+    TableCLear();
    creatLineAndPutDataToTable(beginTime,endTime);
-})
+});
+
+function showAllData(){
+
+  lineToggle();
+   TableCLear();
+ /* $('tbody').empty();*/
+  var XyElement=[];
+  var MbElement=[];
+  var TimeELement=[]
+
+  creatLineAndPutDataToTable('2010-08-18','2030-01-15');
+   options_validatestatics.xAxis.type='linear';
+}
+function shoWSenvenDay(){
+   TableCLear();
+  var today=new Date();
+  //生成JSON请求时间段
+  var todayString=format(today).toString();
+
+  console.log(todayString);
+ 
+  var severnDay=new Date(today.getTime()-(7*1000*60*60*24));
+
+  var severnDayString=format(severnDay).toString();
+    console.log(severnDayString);
+
+    creatLineAndPutDataToTable(severnDayString,todayString);
+}
+
+function showOneMonth(){
+   TableCLear();
+  var today=new Date();
+  //生成JSON请求时间段
+  var todayString=format(today).toString();
+  //30天前，一个月(偷懒)
+  var severnDay=new Date(today.getTime()-(30*1000*60*60*24));
+  var severnDayString=format(severnDay).toString();
+   creatLineAndPutDataToTable(severnDayString,todayString);
+}
+
 /**
  * [因为js中的月份是从0开始，所以需要进行转换]
  * @param  {[num]} number [传入的数字]
@@ -275,16 +347,8 @@ $('#u-submit').bind('click',function(){
  }
  // formatData
  function format(date){
-      return date.getFullYear()+'-'+padding(date.getMouth()+1)+'-'+padding(date.getDate())+''+padding(date.gethours())+':'+padding(date.getMinutes())+':'+padding(date.getSeconds());
- }
-
-/*(function{
-  //lineToggle();
-  var endTime=new Data();
-  console.log(endTime);
-  creatLineAndPutDataToTable(beginTime,endTime);
-});
-*/
+      return date.getFullYear()+'-'+padding(date.getMonth()+1)+'-'+padding(date.getDate());
+  }
 
 
 
