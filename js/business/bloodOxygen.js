@@ -172,8 +172,7 @@ function  creatLineAndPutDataToTable(beginTime,endTime){
        
        success:function(data){
           
-          console.log(data);
-          console.log('获取数据成功');
+         
         
         if (data.SYS_HEAD.RET_STATUS=='S') {
 
@@ -262,6 +261,13 @@ function lineToggle() {
       $('.g-mn').append(warp);
 
 }
+
+
+function  TableCLear(){
+   $('.g-sd tbody').empty();
+   var clonedTr=$("<tr id='cloneTr'><td></td><td></td><td></td><td></td><td></td></tr>")
+   $('.g-sd tbody').append(clonedTr);
+}
 /**
  * [timeLag 比较两个日期的大小]
  * @return {[type]} [description]
@@ -288,11 +294,14 @@ $('#u-submit').bind('click',function(){
   var MbElement=[];
   var TimeELement=[]
    lineToggle();
+    TableCLear();
    creatLineAndPutDataToTable(beginTime,endTime);
-})
+});
 
 function showAllData(){
+
   lineToggle();
+   TableCLear();
  /* $('tbody').empty();*/
   var XyElement=[];
   var MbElement=[];
@@ -302,6 +311,7 @@ function showAllData(){
    options_validatestatics.xAxis.type='linear';
 }
 function shoWSenvenDay(){
+   TableCLear();
   var today=new Date();
   //生成JSON请求时间段
   var todayString=format(today).toString();
@@ -317,6 +327,7 @@ function shoWSenvenDay(){
 }
 
 function showOneMonth(){
+   TableCLear();
   var today=new Date();
   //生成JSON请求时间段
   var todayString=format(today).toString();
