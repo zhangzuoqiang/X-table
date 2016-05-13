@@ -10,7 +10,7 @@ function  creatLineAndPutDataToTable(){
   jQuery.support.cors=true;
   $.ajax({
        method:'get',
-       url:'http://58.67.201.23:9083/serviceProxy/servlet/',
+       url:'http://58.67.201.23:9083/serviceProxy/servlet/'+new Date(),
        data:{
         "id":"522622198501281033",
          "startTime":"2015-08-18",
@@ -47,13 +47,11 @@ function  creatLineAndPutDataToTable(){
                        //日期
                        case(0):
                          $(this).text(item.JCRQ.slice(0,-2));
-                        
                        break;
                        //姓名
                        case(1):
                          $(this).text(item.YHMC);
                        break;
-                      
                        case(2):
                           $(this).text(item.BXB);
                           break;
@@ -113,4 +111,3 @@ function  creatLineAndPutDataToTable(){
  }     
     });
 }
-

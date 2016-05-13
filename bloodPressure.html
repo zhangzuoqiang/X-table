@@ -63,34 +63,22 @@
                  <li class="M-nav-list" id="weightData">血压数据</li>
               </ul>
             </div>
-              
-                 
-             
-          
-            
             <h3 class="M-table-tit">血压</h3>
-            
             <div class="btn-toolbar fr">
               <div class="btn-group">
-                <button class="btn btn-primary">按日期查看</button>
-               <button class="btn btn-primary">按孕周查看</button>
-               <button class="btn btn-info" type="submit">当前测量4次</button>
+                  <select id="daySelect" >
+                    <option>选择时间</option>
+                    <option value="all">全部</option>
+                    <option value="severnDay">近七天</option>
+                    <option value="oneMonth">近一个月</option>
+                  <select>
+                   <label for="u-beginTime">选择开始时间</label><input class="laydate-icon" id="u-beginTime" placeholder="选择开始时间">  
+                   <label for="u-endTime">选择结束时间</label><input class="laydate-icon" id="u-endTime" placeholder="选择结束时间"><button class="btn btn-default" id="u-submit" type="submit">确定</button>
               </div>
-              <div class="btn-group">
-                <select>
-                <option>全部</option>
-                <option>近七天</option>
-                <option>近一个月</option>
-                <option>选择时间</option>
-              <select>
-               <input placeholder="选择开始时间"></input><input placeholder="选择结束时间"></input><button class="btn btn-default" type="submit">确定</button>
-              </div>
-              
-                
             </div>
             
-        <table class="table table-bordered table-striped" id="weightHidden">
-            
+       <div class="M-sd-left">
+           <table class="table table-bordered table-striped" id="weightHidden">
              <thead>
               <tr class="text-center">
                      <td>日期</td>
@@ -99,8 +87,6 @@
                      <td>舒张压</td>
                      <td>收缩压SSY</td>
                      <td>平均压PJY</td>
-                     
-                     
              </tr>
             </thead>
            <tbody>
@@ -111,13 +97,15 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     
             </tr>
            
-        </tbody>
-    </table>
-       <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
+         </tbody>
+   </table>
+       </div>
+    <div class="M-sd-right">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
       </div>
+    </div>
     </div>
 </div>
  <!-- jQuery 1.7.2 or higher -->
@@ -125,6 +113,7 @@
 <!-- Optional, bootstrap javascript library -->
   <script type="text/javascript" src="js/highcharts.js"></script>
   <script type="text/javascript" src="js/exporting.js"></script>
+  <script type="text/javascript" src="js/laydate/laydate.js"></script>
   <script type='text/javascript' src="js/business/bloodPressure.js"></script>
 
  <!--[if lt IE 9] 支持IE9以下新标签>
