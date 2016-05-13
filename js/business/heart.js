@@ -35,23 +35,19 @@ $(document).ready(function(){
             }
         
         },
-        tooltip: {
-            crosshairs: true,
-            shared: true,
-            valueSuffix: '次数'
-        },
+        
     
         series: [{
             name: '胎心率',
-       
-            width:'1'
+            
+             lineWidth: 1
            
             }]
     }
 
 
 
-   for (var i = 0; i < 500; i++) {
+   for (var i = 0; i < 50; i++) {
    
      
        xElement.push(randomScalingFactor());
@@ -64,7 +60,7 @@ $(document).ready(function(){
        });
       console.log(xElement.length);
       console.log(yELement.length);*/
-      options_validatestatics.xAxis.categories= xElement;
+      options_validatestatics.xAxis.categories=xElement;
       options_validatestatics.series[0].data=yELement;
       var chartLine=new Highcharts.Chart(options_validatestatics);
 
@@ -179,7 +175,7 @@ $(document).ready(function(){
             zIndex: 1,
             marker: {
                 fillColor: 'white',
-                lineWidth: 2,
+                lineWidth: 1,
                 lineColor: Highcharts.getOptions().colors[0]
             }
         }, {

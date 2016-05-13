@@ -206,8 +206,6 @@ var endOptions = {
 };
 laydate(startOptions);
 laydate(endOptions);
-
-
 function lineToggle() {
     $('#container').remove();
       var warp=$(document.createElement('div'));
