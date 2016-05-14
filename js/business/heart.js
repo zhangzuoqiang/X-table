@@ -28,7 +28,8 @@ $(document).ready(function(){
        },
         xAxis: {
           type: 'linear',
-          tickInterval:50
+          tickInterval:50,
+          tickLength:10
           },
        
 
