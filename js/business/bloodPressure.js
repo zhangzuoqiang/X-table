@@ -18,7 +18,6 @@ $(function () {
 	 getBpDataToTable("2015-08-18","2016-01-15");
 
 });
- 
 function showTableAsSelect(options){
     if (options=='all') {
         showAllData();
@@ -78,7 +77,7 @@ $('#weightData').bind('click',function(){
                 crosshairs: true
             },
          legend:{
-            enabled : true 
+            enabled : true
          },
          
         series: [{

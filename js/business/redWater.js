@@ -1,11 +1,8 @@
-
 $(function(){
    creatLineAndPutDataToTable();
   
 });
-
 function  creatLineAndPutDataToTable(){
-
   //跨域支持
   jQuery.support.cors=true;
   $.ajax({
@@ -24,7 +21,6 @@ function  creatLineAndPutDataToTable(){
         console.log(XMLHttpRequest.status);
         console.log(XMLHttpRequest.readyState);
         console.log(textStatus);
-
        },
        success:function(data){
           
@@ -85,18 +81,11 @@ function  creatLineAndPutDataToTable(){
                         case(12):
                           $(this).text(item.WSSC);
                          break;
-
-
-
-                      
                   }
                 
                 });
                 clonedTr.insertAfter(tr);
             });
-             
-    
-    
        }
        else{
             console.log(XMLHttpRequest.status);
@@ -106,8 +95,6 @@ function  creatLineAndPutDataToTable(){
 
           }
            $("#cloneTr").hide();
-  
-  
  }     
     });
 }
