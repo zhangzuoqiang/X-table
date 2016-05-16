@@ -1,3 +1,6 @@
+*{
+font-size:12px;
+line-height:12px}
 h2{
 	font-size: 18px;
 	line-height: 18px;
@@ -12,4 +15,12 @@ h3{
 }
 .M-tit-small,.M-tit-big{
 	text-align: center;
+}
+#container{
+margin-top:-5px;
+}
+
+
+.table{
+	margin-bottom: 5px;
 }

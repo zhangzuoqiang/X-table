@@ -291,8 +291,3 @@ function padding(number){
 function format(date){
       return date.getFullYear()+'-'+padding(date.getMonth()+1)+'-'+padding(date.getDate());
 }
-
-
-
-
-
